@@ -1,4 +1,4 @@
-import { UsersService } from './users.service';
+import { ApiService } from './api.service';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -6,15 +6,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
 import { HoverDirective } from './hover.directive';
 import { SearchPipe } from './search.pipe';
 import { HomePageComponent } from './home-page/home-page.component';
-import { SetupPageComponent } from './setup-page/setup-page.component';
+import { WeatherComponent } from './weather/weather.component';
+import { environment } from './../environments/environment';
+import { ProductsComponent } from './products/products.component';
+import { ProductComponent } from './product/product.component';
+import { CartComponent } from './cart/cart.component';
+import { CartProdComponent } from './cart-prod/cart-prod.component';
+import { LoginComponent } from './login/login.component';
 
 const routes = [
   {path: '', component: HomePageComponent},
-  {path: 'setup', component: SetupPageComponent},
+  {path: 'weather', component: WeatherComponent},
+  {path: 'products', component: ProductsComponent}, 
+  {path: 'cart', component: CartComponent},
+  {path: 'login', component: LoginComponent}
 
 ]
 
@@ -22,19 +30,23 @@ const routes = [
   declarations: 
   [
     AppComponent,
-    UserComponent,
     HoverDirective,
     SearchPipe,
     HomePageComponent,
-    SetupPageComponent
-  ],
+    WeatherComponent,
+    ProductsComponent,
+    ProductComponent,
+    CartComponent,
+    CartProdComponent,
+    LoginComponent
+],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [UsersService],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
