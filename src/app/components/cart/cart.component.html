@@ -1,0 +1,24 @@
+<div class="container">
+
+  <h3>Your shopping cart</h3>
+
+    <ul class="collection">
+        <p *ngIf="this.cart.prods.length < 1" style="margin: 50px;">there is no items in your shopping cart</p>
+      <app-cart-prod *ngFor="let p of this.cart.prods" [product] = "p" ></app-cart-prod>
+    </ul>
+
+    <div *ngIf="this.cart.prods.length > 0">
+      <p>Total price: {{getSum()}}$</p>
+         
+
+       <!-- Scaled in -->
+    <button class="btn-floating btn-large scale-transition blue" (click)="onBuy()">Buy
+      <i class="material-icons right">send</i>
+    </button>
+
+
+  </div>
+ 
+</div>  
+
+<br>

@@ -1,8 +1,8 @@
 
  
-<nav class="blue lighten-2">
+<nav class="light-blue lighten-1">
     <div class="nav-wrapper" >
-      <a href="#" class="brand-logo">
+      <a href="/" class="brand-logo">
           <img src="https://image.ibb.co/jmXO3T/logo2.png" alt="logo2" border="0" height="60">
           
       </a>
@@ -19,47 +19,59 @@
           </li>
         <li>
           <a routerLink="/cart">
-            <i class="tiny material-icons">shopping_cart</i>
+            
+            <i class="tiny material-icons">
+              shopping_cart 
+            </i>
+            
+            
           </a>
       </li>
       <li>
-          <a routerLink="/login">
+          <a routerLink="/profile">
             <i class="tiny material-icons">account_circle</i>
           </a>
       </li>
+      <li>
+          <a routerLink="/about">
+            <i class="tiny material-icons">info_outline</i>
+          </a>
+      </li>
+      <li *ngIf="userService.getRole()=='admin'">
+        <a routerLink="/admin">
+          <i class="tiny material-icons">dashboard</i>
+        </a>
+    </li>
       </ul>
     </div>
   </nav>
 
-<div>
-
-
-    <router-outlet></router-outlet>
-
+<div style="min-height: 600px">
+     <router-outlet></router-outlet>
 </div> 
 
-<footer class="page-footer blue lighten-2">
-  <div class="container">
+<footer class="page-footer light-blue lighten-1">
+  <div style="margin-left: 10%; margin-right: auto;">
     <div class="row">
       <div class="col l6 s12">
-        <h5 class="white-text">Author Lev Berlinkov</h5>
+        <h5 class="white-text" >Author Lev Berlinkov</h5>
         <p class="grey-text text-lighten-4">Website developed in Angular and Material design, ASP.NET, MySQL Server.</p>
       </div>
       <div class="col l4 offset-l2 s12">
         <h5 class="white-text">Links</h5>
         <ul>
-          <li><a class="grey-text text-lighten-3" href="mailto:berlinkovlev@gmail.com!">Support and feedback</a></li>
-          
+          <li><a class="grey-text text-lighten-3" href="mailto:berlinkovlev@gmail.com">Support and feedback</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-copyright">
-    <div class="container">
-    © 2018 Copyright Text
-    <a class="grey-text text-lighten-4 right">all materials used only for educational purposes</a>
+    <div style="margin-left: auto; margin-right: auto;">
+      <a class="grey-text text-lighten-4 right">© 2018 all materials used only for educational purposes</a>
     </div>
   </div>
 </footer>
+
+
   
   

@@ -1,22 +1,24 @@
-import { ApiService } from './api.service';
+import { UserService } from './services/user.service';
 import { Component } from '@angular/core';
+import { CartService } from './services/cart.service';
+
+
 
 @Component
 ({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [ApiService]
+  providers: [CartService]
 })
 export class AppComponent 
-{
-  cartSize = 0;
+{ 
 
-  constructor(private serv: ApiService){}
+  constructor(private cart: CartService, private userService: UserService ){}
 
   ngOnInit() 
   {
-      this.cartSize = this.serv.prods.length;
+    //<!----*ngIf="userService.roleMatch(['Admin'])"--->
   }
     
 }

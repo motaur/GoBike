@@ -1,0 +1,28 @@
+.sidenavy {
+    width: 130px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    left: 10px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px 0
+}
+
+.sidenavy a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+}
+
+.sidenavy a:hover {
+    color: #0099ff;
+}
+
+
+@media screen and (max-height: 450px) {
+    .sidenavy {padding-top: 15px;}
+    .sidenavy a {font-size: 18px;}
+}

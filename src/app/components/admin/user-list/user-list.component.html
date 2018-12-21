@@ -1,0 +1,25 @@
+<div class="container">
+    
+  <table>
+
+    <thead>
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col}}
+        </th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr *ngFor="let user of users | async">
+        <td *ngFor="let col of columns">
+          {{ user[col] }}
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+

@@ -1,0 +1,257 @@
+<div style="position: relative;">
+        <div style="position: absolute; top: 0; right: 15%; text-align:right;">
+                <button [routerLink]="['/login']" (click)="logout()" class="btn waves-effect waves-light blue" >
+                    <i class="medium material-icons">exit_to_app</i> 
+                </button>
+        </div>           
+</div>   
+
+
+<div class="container">
+        
+    <h4>User Details</h4>    
+    
+    <br> 
+    <p>username: {{profileForm.value.username}} </p> 
+    <br>
+
+    <form [formGroup]="profileForm" (ngSubmit)="onUpdate()">
+        <div class="row">
+
+            <div class="input-field col s6">
+                <input formControlName="firstName" id="first_name" required>
+                <label class="active" for="first_name">First Name</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input formControlName="lastName" id="last_name">
+                <label class="active" for="last_name">Last Name</label>
+            </div>
+
+            <div class="input-field col s3">
+                <input formControlName="state" id="state">
+                <label class="active" for="state">State</label>
+            </div>
+
+            <div class="input-field col s3">
+                <input formControlName="city" id="city">
+                <label class="active" for="city">City</label>
+            </div>  
+            
+            <div class="input-field col s3">
+                <input formControlName="street" id="street">
+                <label class="active" for="street">Address</label>
+            </div>
+
+            <div class="input-field col s3">
+                <input formControlName="zip" id="zip">
+                <label class="active" for="zip">Zip code</label>
+            </div> 
+            
+            <div class="input-field col s3">
+                    <input formControlName="telephone" id="Telephone">
+                    <label class="active" for="Telephone">Telephone</label>
+            </div>
+                      
+        </div>
+            
+        <button type="submit" [disabled]="!profileForm.valid" class="btn waves-effect waves-light blue">Submit</button>
+    
+    </form>
+   
+</div>   
+
+<div class="container">
+        <h4>User Orders</h4>
+        <table>
+
+        <thead>
+        <tr>
+            <th *ngFor="let col of columns">
+            {{col}}
+            </th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <tr *ngFor="let order of orders | async">
+            <td *ngFor="let col of columns">
+            {{ order [col] }}
+            </td>
+        </tr>
+        </tbody>
+
+        </table>
+
+</div>
+
+
+
+    <!--
+    <div class = "container">
+        <p> Account email: {{profile.username}}
+            <br> 
+            <br>    
+            <button  [routerLink]="['/login']" (click)="logout()" class="btn waves-effect waves-light blue">
+                <i class="medium material-icons">exit_to_app</i> 
+            </button>
+        </p>
+        <br> 
+    <h3>User detail</h3>
+        <form name="form" (ngSubmit)="update()" #f="ngForm" novalidate>
+            <div class="row">
+                    <div class="input-field col s6">
+                        <input value="{{profile.firstName}}" id="first_name">
+                        <label class="active" for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{profile.lastName}}" id="last_name">
+                        <label class="active" for="last_name">Last Name</label>
+                    </div>
+                <div class="input-field col s3">
+                <input value="{{profile.state}}" id="state">
+                <label class="active" for="state">State</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="{{profile.city}}" id="city">
+                    <label class="active" for="city">City</label>
+                </div>  
+                
+                <div class="input-field col s3">
+                    <input value="{{profile.address}}" id="address">
+                    <label class="active" for="address">Address</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="{{profile.zip}}" id="zip">
+                    <label class="active" for="zip">Zip code</label>
+                </div> 
+                
+                <div class="input-field col s3">
+                        <input value="{{profile.telephone}}" id="Telephone">
+                        <label class="active" for="Telephone">Telephone</label>
+                </div> 
+            </div>
+            <button [disabled]='loading' class="btn waves-effect waves-light blue">Update</button>
+                        <img *ngIf='loading' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </form>
+    </div>
+    <br>
+
+    <div class="container">
+        <h3>User Orders</h3>
+        <table>
+
+        <thead>
+        <tr>
+            <th *ngFor="let col of columns">
+            {{col}}
+            </th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <tr *ngFor="let order of orders | async">
+            <td *ngFor="let col of columns">
+            {{ order [col] }}
+            </td>
+        </tr>
+        </tbody>
+
+        </table>
+
+    </div>
+    <br>
+    <br>
+
+
+    <div class = "container">
+        <p> Account email: {{profile.username}}
+            <br> 
+            <br>    
+            <button  [routerLink]="['/login']" (click)="logout()" class="btn waves-effect waves-light blue">
+                <i class="medium material-icons">exit_to_app</i> 
+            </button>
+        </p>
+        <br> 
+    <h3>User detail</h3>
+        <form name="form" (ngSubmit)="update()" #f="ngForm" novalidate>
+            <div class="row">
+                    <div class="input-field col s6">
+                        <input value="{{profile.firstName}}" id="first_name">
+                        <label class="active" for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input value="{{profile.lastName}}" id="last_name">
+                        <label class="active" for="last_name">Last Name</label>
+                    </div>
+                <div class="input-field col s3">
+                <input value="{{profile.state}}" id="state">
+                <label class="active" for="state">State</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="{{profile.city}}" id="city">
+                    <label class="active" for="city">City</label>
+                </div>  
+                
+                <div class="input-field col s3">
+                    <input value="{{profile.address}}" id="address">
+                    <label class="active" for="address">Address</label>
+                </div>
+                <div class="input-field col s3">
+                    <input value="{{profile.zip}}" id="zip">
+                    <label class="active" for="zip">Zip code</label>
+                </div> 
+                
+                <div class="input-field col s3">
+                        <input value="{{profile.telephone}}" id="Telephone">
+                        <label class="active" for="Telephone">Telephone</label>
+                </div> 
+            </div>
+            <button [disabled]='loading' class="btn waves-effect waves-light blue">Update</button>
+                        <img *ngIf='loading' src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </form>
+    </div>
+    <br>
+
+    <div class="container">
+        <h3>User Orders</h3>
+        <table>
+
+        <thead>
+        <tr>
+            <th *ngFor="let col of columns">
+            {{col}}
+            </th>
+        </tr>
+        </thead>
+        
+        <tbody>
+        <tr *ngFor="let order of orders | async">
+            <td *ngFor="let col of columns">
+            {{ order [col] }}
+            </td>
+        </tr>
+        </tbody>
+
+        </table>
+
+    </div>
+    <br>
+    <br>
+
+
+
+
+    <div class="col-md-6 col-md-offset-3">
+        <h1>Hi Admin {{currentUser.firstName}}!</h1>
+        <p>You're logged in with Angular 5!!</p>
+        <h3>All registered users:</h3>
+        <ul>
+            <li *ngFor="let user of users">
+                {{user.username}} ({{user.firstName}} {{user.lastName}})
+                - <a (click)="deleteUser(user.id)">Delete</a>
+            </li>
+        </ul>
+        
+        </div>
+    -->
