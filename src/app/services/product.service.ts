@@ -24,4 +24,11 @@ export class ProductService
     {
         return this.http.post(this.url + 'addProduct', product);
     }
+
+    deleteProd(id)
+    {
+       this.http.get<any>(this.url + 'deleteProd?id=' + id)
+       return this.getProducts()   
+
+    }
 }

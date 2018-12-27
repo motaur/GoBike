@@ -1,7 +1,14 @@
 .card-content
 {
-    height: 130px;
+    height: 200px;
+    position: relative;
+    top: 50px;
     
+}
+
+.card-image
+{ 
+    height: 100px;
 }
 
 .hovered

@@ -1,3 +1,5 @@
+import { ProductService } from './../../services/product.service';
+import { UserService } from './../../services/user.service';
 import { CartService } from '../../services/cart.service';
 import { Component, Input} from '@angular/core';
 
@@ -13,14 +15,13 @@ export class ProductComponent
 
     quantity = 1
     
-    constructor(private cart: CartService)  
+    constructor(private cart: CartService, private productService: ProductService, private userService: UserService)  
     { 
        
     }
 
     onClick()
-    {   
-        
+    {       
         this.cart.setCartProd(this.product, this.quantity);
     }
 
@@ -33,6 +34,30 @@ export class ProductComponent
     {
         this.quantity++
     }
+
+    onDelete()
+    {
+        this.productService.deleteProd(this.product.id).map(res=>res)        
+        .subscribe
+        (
+            data => 
+            {      
+                alert("The product was removed")
+                        
+            },
+            error => 
+            {                
+                //this.alertService.error(error);
+                alert("Error, product was not removed")                                
+            }
+        )
+
+
+
+
+    }
+
+    
   
 }
 

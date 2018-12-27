@@ -1,7 +1,6 @@
 import { OrdersComponent } from './orders/orders.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './admin.component';
-import { AddProductComponent } from './add-product/add-product.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -17,14 +16,13 @@ import { CommonModule }   from '@angular/common';
    [
     AdminComponent,
     UserListComponent,
-    AddProductComponent,
     DashboardComponent,
     OrdersComponent
    ],
    imports: 
    [
     CommonModule,
-    AdminRoutingModule,
+    AdminRoutingModule,  
     RouterModule,
     ReactiveFormsModule
    ], 

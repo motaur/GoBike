@@ -1,4 +1,5 @@
 <br>
+
 <div class="container">
   <div class="row">
       <div class="input-field col s3">
@@ -11,4 +12,62 @@
     <app-product *ngFor="let p of products | search: searchStr" [product] = "p" ></app-product>
   </div>
 
+  
+
+</div>
+
+<a href="/products#open-modal" class="btn-floating btn-large waves-effect waves-light red btn modal-trigger" id="float" *ngIf="userService.getRole()=='admin'" >
+    <i class="material-icons">add</i>
+</a>
+
+  
+  
+<div id="open-modal" class="modal-window">
+      <div>
+      <a href="/products#" title="Close" class="modal-close">Close</a>
+
+      <h2> Add New Product</h2>
+
+      <form [formGroup]="productForm" (ngSubmit)="onAdd()">
+          <div class="row">
+  
+              <div  class="input-field col s4">
+                  <input formControlName="brand" id="brand" required>
+                  <label class="active" for="brand">Brand</label>
+              </div>
+  
+              <div class="input-field col s4">
+                  <input formControlName="name" id="name" required>
+                  <label class="active" for="name">Name</label>
+              </div>
+  
+              <div class="input-field col s2">
+                  <input formControlName="price" id="price" type="number" min="1" max ="99999999" required>
+                  <label class="active" for="price">Price</label>
+              </div>
+  
+              <div class="input-field col s2">
+                  <input formControlName="quantity" id="quantity" type="number" min="1" max ="100" required>
+                  <label class="active" for="quantity">Quantity</label>
+              </div>  
+              
+              <div class="input-field col s12">
+                  <input formControlName="description" id="description" data-length="255" required>
+                  <label class="active" for="description">Description</label>
+              </div>
+  
+              <div class="input-field col s12">
+                  <input formControlName="image" id="image" type="url" data-length="255" required>
+                  <label class="active" for="image">Image</label>
+                  <span class="helper-text" data-error="wrong" data-success="right">url to image</span>
+              </div>                         
+                        
+          </div>
+              
+          <button type="submit" [disabled]="!productForm.valid" class="btn waves-effect waves-light blue">Add Product</button>
+      
+      </form>
+
+        
+      </div>
 </div>
