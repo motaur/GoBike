@@ -1,6 +1,5 @@
-<br>
-
 <div class="container">
+
   <div class="row">
       <div class="input-field col s3">
         <input id="name"  class="validate" [(ngModel)]="searchStr">
@@ -9,10 +8,8 @@
   </div>
 
   <div class="row">
-    <app-product *ngFor="let p of products | search: searchStr" [product] = "p" ></app-product>
+    <app-product *ngFor="let p of productService.products | search: searchStr" [product] = "p" ></app-product>
   </div>
-
-  
 
 </div>
 
@@ -20,15 +17,13 @@
     <i class="material-icons">add</i>
 </a>
 
-  
-  
 <div id="open-modal" class="modal-window">
       <div>
       <a href="/products#" title="Close" class="modal-close">Close</a>
 
       <h2> Add New Product</h2>
 
-      <form [formGroup]="productForm" (ngSubmit)="onAdd()">
+      <form [formGroup]="productForm" (ngSubmit)="onAdd(); productForm.reset()">
           <div class="row">
   
               <div  class="input-field col s4">

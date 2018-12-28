@@ -1,12 +1,12 @@
 import { HttpClient  } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
+import { url } from './../helpers/global-variables';
 
 @Injectable()
 export class CartService 
 {     
-    prods = [];
-    url = 'http://localhost:57108/api/'
+    prods = [];   
             
     constructor(private http: HttpClient) {  }
 
@@ -17,7 +17,7 @@ export class CartService
            
         if (currentUser && currentUser.access_token) 
         {
-            this.http.get<any>(this.url + 'deleteProdFromCart?user=' + currentUser.userName + '&productID=' + prod.id)
+            this.http.get<any>(url + 'deleteProdFromCart?user=' + currentUser.userName + '&productID=' + prod.id)
             .map  
             (
                 function(response) 
@@ -44,7 +44,7 @@ export class CartService
         //for authorized user get cart from DB
         if (currentUser && currentUser.access_token) 
         {
-           this.http.get<any>(this.url + 'getCartProds?user=' + currentUser.userName)
+           this.http.get<any>(url + 'getCartProds?user=' + currentUser.userName)
            .map  
             (
                 function(response) 
@@ -70,7 +70,7 @@ export class CartService
         //for authorized user
         if (currentUser && currentUser.access_token) 
         {    
-            this.http.get<any>(this.url + 'addProdToCart?user=' + currentUser.userName + '&productID=' + prod.id + '&quantity=' + quantity)
+            this.http.get<any>(url + 'addProdToCart?user=' + currentUser.userName + '&productID=' + prod.id + '&quantity=' + quantity)
             .map  
             (
                 function(response) 
@@ -100,7 +100,7 @@ export class CartService
 
         if (currentUser && currentUser.access_token) 
         {
-           this.http.get<any>(this.url + 'createOrder?username=' + currentUser.userName + '&summ=' + sum)
+           this.http.get<any>(url + 'createOrder?username=' + currentUser.userName + '&summ=' + sum)
            .map  
             (
                 function(response) 

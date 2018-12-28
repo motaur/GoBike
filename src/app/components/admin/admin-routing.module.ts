@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrdersComponent } from './orders/orders.component';
 
-
-
 const adminRoutes: Routes = [
   { path: '', component: AdminComponent,
 
@@ -14,7 +12,6 @@ const adminRoutes: Routes = [
         [
           {
             path: '',
-            /*canActivate: [AuthGuard], data: { route: ['admin'],*/
             children: 
             [
               
@@ -25,11 +22,8 @@ const adminRoutes: Routes = [
           }
         ] 
     },
-
-    
-
-    // otherwise redirect to profile
-    //  { path: '**', redirectTo: '/' }
+   
+    { path: '**', redirectTo: '/forbidden' }
 ];
 
 

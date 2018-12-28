@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
-import { Observable } from 'rxjs';
+import { url } from './../helpers/global-variables';
 
 @Injectable()
 export class UserService 
 {
-    users    
-    
-    url = 'http://localhost:57108/api/'
+    users   
     public currentUser;
         
     constructor(private http: HttpClient) { }
@@ -16,7 +14,7 @@ export class UserService
    
     getUsers()
     {
-        return this.http.get<any>(this.url + 'getUsers')
+        return this.http.get<any>(url + 'getUsers')
             .map  
             (
                 function(response) 
@@ -39,13 +37,13 @@ export class UserService
 
     updateProfile(model)
     {
-        return this.http.post(this.url + 'Account/UpdateProfile', model);
+        return this.http.post(url + 'Account/UpdateProfile', model);
     }
     
    
     getUserInfo()
     {        
-        return this.http.get(this.url + 'Account/UserInfo').map  
+        return this.http.get(url + 'Account/UserInfo').map  
         (
             function(response) 
             {                          
@@ -56,7 +54,7 @@ export class UserService
 
     create(user: User) 
     {  
-       return this.http.post(this.url + 'Account/Register', user);
+       return this.http.post(url + 'Account/Register', user);
     }
 
     getRole()  
@@ -79,7 +77,7 @@ export class UserService
 
     getOrdersByUser()
     {
-        return this.http.get(this.url + 'Account/getOrdersByUser').map  
+        return this.http.get(url + 'Account/getOrdersByUser').map  
         (
             function(response) 
             {                           
@@ -95,6 +93,6 @@ export class UserService
 
     logout()
     {
-        return this.http.post(this.url + 'Account/Logout', "").map(response=>{response})
+        return this.http.post(url + 'Account/Logout', "").map(response=>{response})
     }
 }

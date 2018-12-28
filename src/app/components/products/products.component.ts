@@ -1,7 +1,7 @@
+import { ProductService } from './../../services/product.service';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -10,9 +10,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class ProductsComponent implements OnInit 
 {    
-    products = [];
-
-    searchStr = '';
+   searchStr = '';
 
     productForm = this.fb.group
     ({
@@ -32,7 +30,7 @@ export class ProductsComponent implements OnInit
 
     ngOnInit()
     {
-       this.productService.getProducts().subscribe(products => {this.products = products});   
+       this.productService.getProducts()   
     }
     
 
@@ -43,8 +41,9 @@ export class ProductsComponent implements OnInit
         (
             data => 
             {      
-                alert("New product was added")
-                //this.userService.getUserInfo().subscribe(profile => {this.profileForm.patchValue(profile[0])});               
+                alert("New product was added")  
+                this.productService.products = data               
+                                        
             },
             error => 
             {                
@@ -52,13 +51,7 @@ export class ProductsComponent implements OnInit
                 alert("Error, product was not added")                                
             }
         )
-
-        this.ngOnInit()
+       
     }
-        
      
-
-    
-
-    
 }

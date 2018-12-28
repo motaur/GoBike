@@ -5,11 +5,11 @@ import { Pipe, PipeTransform, } from "@angular/core";
 })
 export class SearchPipe implements PipeTransform
 {
-    transform(product, value) //get array of users and value for search
-    {
-        return product.filter(product => 
+    transform(products, value) //get array of products and value for search
+    {        
+        return products.filter(product => 
         {
-            return product.name.includes(value) //includes if value includes in user.name
+            return product.name.includes(value) //includes if value includes in prod.name
         })
     }
 }

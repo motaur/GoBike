@@ -43,6 +43,7 @@ export class ProductComponent
             data => 
             {      
                 alert("The product was removed")
+                this.productService.products = data
                         
             },
             error => 

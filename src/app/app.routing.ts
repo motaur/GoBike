@@ -1,4 +1,3 @@
-
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './auth.guard';
@@ -22,9 +21,8 @@ const appRoutes: Routes = [
     { path: 'cart', component: CartComponent},
     { path: 'forbidden', component: ForbiddenComponent},
     
-
     // otherwise redirect to profile
-     { path: '**', redirectTo: 'profile' }
+     { path: '**', redirectTo: 'forbidden' }
 ];
 
 
