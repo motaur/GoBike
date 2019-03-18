@@ -14,15 +14,8 @@ export class UserService
    
     getUsers()
     {
-        return this.http.get<any>(url + 'getUsers')
-            .map  
-            (
-                function(response) 
-                {                
-                    return response
-                }
-
-            )
+        return this.http.get(url + 'getUsers')
+            
     }
 
     getUserColumns(): string[]
@@ -43,13 +36,7 @@ export class UserService
    
     getUserInfo()
     {        
-        return this.http.get(url + 'Account/UserInfo').map  
-        (
-            function(response) 
-            {                          
-                return response
-            }    
-        )          
+        return this.http.get(url + 'Account/UserInfo')
     }
 
     create(user: User) 
@@ -77,13 +64,7 @@ export class UserService
 
     getOrdersByUser()
     {
-        return this.http.get(url + 'Account/getOrdersByUser').map  
-        (
-            function(response) 
-            {                           
-                return response
-            }    
-        )          
+        return this.http.get(url + 'Account/getOrdersByUser')
     }    
    
     delete(id: number) 

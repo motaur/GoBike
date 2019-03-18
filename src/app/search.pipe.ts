@@ -9,7 +9,9 @@ export class SearchPipe implements PipeTransform
     {        
         return products.filter(product => 
         {
-            return product.name.includes(value) //includes if value includes in prod.name
+            //value = value.toLowerCase()
+            //product.name = product.name.toLowerCase() 
+            return product.name.includes(value) || product.brand.includes(value)//includes if value includes in prod.name
         })
     }
 }

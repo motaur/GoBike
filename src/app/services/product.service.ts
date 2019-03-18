@@ -12,7 +12,7 @@ export class ProductService
    
     getProducts()
     {
-        return this.http.get<any>(url + 'getBikes').map(res=>res)        
+        return this.http.get<any>(url + 'getBikes')      
         .subscribe
         (
             data => 

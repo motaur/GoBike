@@ -28,10 +28,14 @@ export class ProfileComponent implements OnInit
         
     ngOnInit() 
     {
-        this.userService.getUserInfo().subscribe(profile => {this.profileForm.patchValue(profile[0])});
+        this.userService.getUserInfo().subscribe(profile => 
+        {
+            this.profileForm.patchValue(profile[0])
+            this.userService.getOrdersByUser().subscribe(orders => {this.orders = Observable.of(orders)})
+        })
         
         this.columns = this.userService.getOrderColumns()
-        this.userService.getOrdersByUser().subscribe(orders => {this.orders = Observable.of(orders)});
+        
     }  
 
     onUpdate() 
